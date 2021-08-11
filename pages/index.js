@@ -46,6 +46,11 @@ export default function Home() {
               Twitter
             </a>
           </li>
+          <li>
+            <a target="_blank" href="/stackoverflow">
+              Stack Overflow
+            </a>
+          </li>
         </ul>
       </div>
     </>
