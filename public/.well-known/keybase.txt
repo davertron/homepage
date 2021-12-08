@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/davertron
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://davertron.com
+  * I am davertron (https://keybase.io/davertron) on keybase.
+  * I have a public key ASCcsFLBGsqhV4qglkL-5Vd6ClQz80BucRwo5c2ONGIYdAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01209cb052c11acaa1578aa09642fee5577a0a5433f3406e711c28e5cd8e346218740a",
+      "host": "keybase.io",
+      "kid": "01209cb052c11acaa1578aa09642fee5577a0a5433f3406e711c28e5cd8e346218740a",
+      "uid": "28351b673c75bfff80a0049cbee87e19",
+      "username": "davertron"
+    },
+    "merkle_root": {
+      "ctime": 1636672530,
+      "hash": "f46818d37eb0426c6bb5450d26cedeb183864a2f79e122f1f31bb4dd880aa1cb1a03c4b149c25ef6858fe1c609d8987f8f4061673c3cc0a29a7f172c5ffb8612",
+      "hash_meta": "8d0beb90a8c4fe9305c7f0fa569a421bf1f2c99449dcd7c8a7b2b6c4136e0030",
+      "seqno": 21200131
+    },
+    "service": {
+      "entropy": "gzEx2nVMs/b18To0wVkYqiMG",
+      "hostname": "davertron.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.8.0"
+  },
+  "ctime": 1636672540,
+  "expire_in": 504576000,
+  "prev": "beb69b2e569cb34ad710f26ecb72dddffd3b6a33270d246c3063302260aeac6a",
+  "seqno": 15,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgnLBSwRrKoVeKoJZC/uVXegpUM/NAbnEcKOXNjjRiGHQKp3BheWxvYWTESpcCD8QgvrabLlacs0rXEPJuy3Ld3/07ajMnDSRsMGMwImCurGrEIIpCzfA5JRlPPMrkEanNCbSKIba+YckT9qZal3Z1XwUrAgHCo3NpZ8RAd0+RncgIjs6jwnbwCUvLJgPg0ibla3/o7d+76ELatA9Ql/9pCw7fNA2I9IkcSD4LN9vcL/bqWrOIP2sNe5z1BqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIPKMZDMe7Qzd42DDdhDjAFdayBkpYnIjm5L4Sw6rjwXZo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/davertron
+
+==================================================================
