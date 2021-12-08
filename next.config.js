@@ -27,6 +27,11 @@ module.exports = {
         destination: "https://twitter.com/davertron",
         permanent: true,
       },
+      {
+        source: "/stackoverflow",
+        destination: "https://meta.stackoverflow.com/users/205334/davertron",
+        permanent: true,
+      },
     ];
   },
 };
