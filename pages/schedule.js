@@ -18,7 +18,7 @@ export default function Home() {
         <GoogleAnalytics />
       </Head>
 
-      <div className={styles.container}>
+      <div className={styles.scheduleContainer}>
         <h1>Ice Pack Games</h1>
         <iframe
           className={styles.observableEmbed}
