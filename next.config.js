@@ -32,6 +32,11 @@ module.exports = {
         destination: "https://meta.stackoverflow.com/users/205334/davertron",
         permanent: true,
       },
+      {
+        source: "/schedule",
+        destination: "/icepack",
+        permanent: true,
+      },
     ];
   },
 };
