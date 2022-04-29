@@ -11,7 +11,11 @@ function getText(el, $) {
   return text.replace(/(.*day)/, "$1 ");
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
+  // Set caching headers to cache this for 8 hours...the values on the Full
+  // stride site should not be changing very frequently...
+  const eightHoursInSeconds = 8 * 60 * 60;
+  res.setHeader("Cache-Control", `public, s-maxage=${eightHoursInSeconds}`);
   const games = [];
   try {
     const response = await axios
