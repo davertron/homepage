@@ -6,11 +6,26 @@
 .container {
     background-color: rgba(255, 255, 255, 0.8);
     width: 50vw;
-    margin-top: 10%;
+    margin-top: 10vh;
 }
 
 .scheduleContainer {
     background-color: rgba(255, 255, 255, 0.8);
     width: 80vw;
     max-width: 1024px;
+    margin-top: 10vh;
+}
+
+.gamesTable {
+    font-size: large;
+    border: 1px solid #efefef;
+    width: 100%;
+}
+
+.gamesTable thead th:nth-child(1), .gamesTable tbody td:nth-child(1) {
+    text-align: left;
+}
+
+.gamesTable td {
+    border-top: 1px solid #ccc;
 }

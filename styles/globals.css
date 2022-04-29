@@ -24,3 +24,9 @@ body {
         transform: translateY(-50%);
     }
 }
+
+h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 32px 0;
+}
