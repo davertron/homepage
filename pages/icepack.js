@@ -100,6 +100,9 @@ function getNextGameIndex(games) {
 
 // TODO: Show scores
 // TODO: Show standings (calculate them?)
+// TODO: Don't grey out before index, beacuse this greys out other team's
+// games...you should grey out based on whether the game has a score or not (or
+// more complicated but grey out on whether its in the past?)
 export default function IcePack({ games }) {
   const [onlyIcePackGames, setOnlyIcePackGames] = useState(true);
 
