@@ -88,8 +88,6 @@ function getNextGameIndex(games) {
         today.getUTCFullYear();
     }
 
-    console.log(parseableDate);
-
     return new Date(parseableDate.trim());
   });
 
