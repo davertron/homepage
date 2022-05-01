@@ -4,12 +4,7 @@ import GoogleAnalytics from "../components/GoogleAnalytics";
 import { useState } from "react";
 
 import axios from "axios";
-import cheerio from "cheerio";
-
-function getText(el, $) {
-  const text = $(el).text().replace(/\n/g, "").replace(/\t/g, "");
-  return text.replace(/(.*day)/, "$1 ");
-}
+import { load } from "cheerio";
 
 export async function getServerSideProps({ req, res }) {
   // Set caching headers to cache this for 8 hours...the values on the Full
@@ -20,7 +15,7 @@ export async function getServerSideProps({ req, res }) {
   try {
     const response = await axios
       .get(
-        "http://external.horizonwebref.com/scheduleExternal.hwr?asn=206098&enc=a374281e1326d868c25a2314936b52c006dce21a&primary=FFFFFF&secondary=000000&gc=42337",
+        "http://fullstridestaging.com/schedule_nf.php?league=1&programme_abbr=SRC",
         {
           headers: {
             "User-Agent":
@@ -30,17 +25,23 @@ export async function getServerSideProps({ req, res }) {
       )
       .then((r) => r.data);
 
-    const $ = cheerio.load(response);
-    const scheduleRows = $("table.dir tr");
-    $(scheduleRows).each((index, row) => {
+    const $ = load(response);
+
+    const $scheduleRows = $(
+      "body > font > table > tbody > tr:nth-child(4) > td > table > tbody > tr"
+    );
+
+    $scheduleRows.each((index, row) => {
       if (index !== 0) {
         const tds = $(row).find("td");
         const game = {
-          Date: getText(tds[0], $),
-          Time: getText(tds[1], $),
-          Home: getText(tds[3], $),
-          Away: getText(tds[4], $),
-          Rink: getText(tds[5], $),
+          Date: $(tds[0]).text(),
+          Rink: $(tds[1]).text(),
+          Teams: $(tds[3])
+            .text()
+            .replace(/\n/, "")
+            .split(/\n/)
+            .map((t) => t.trim()),
         };
         games.push(game);
       }
@@ -48,16 +49,13 @@ export async function getServerSideProps({ req, res }) {
   } catch (e) {
     console.error(e);
   }
-  console.log(games);
   return { props: { games } };
 }
 
 export default function IcePack({ games }) {
   const [onlyIcePackGames, setOnlyIcePackGames] = useState(true);
 
-  const icePackGames = games.filter(
-    (g) => g.Home === "Ice Pack" || g.Away === "Ice Pack"
-  );
+  const icePackGames = games.filter((g) => g.Teams.includes("Ice Pack"));
 
   if (onlyIcePackGames) {
     games = icePackGames;
@@ -90,26 +88,20 @@ export default function IcePack({ games }) {
             <thead>
               <tr>
                 <th>Date</th>
-                <th>Time</th>
                 <th>Rink</th>
                 <th>{onlyIcePackGames ? "Opponent" : "Home"}</th>
-                {!onlyIcePackGames && <th>Away</th>}
               </tr>
             </thead>
             <tbody>
               {games.map((g) => (
                 <tr key={`${g.Date}-${g.Time}`}>
-                  <td>{g.Date}</td>
-                  <td>{g.Time}</td>
+                  <td>{g.Date.replace(/\)/, ") - ")}</td>
                   <td>{g.Rink}</td>
                   <td>
                     {onlyIcePackGames
-                      ? g.Away === "Ice Pack"
-                        ? g.Home
-                        : g.Away
-                      : g.Home}
+                      ? g.Teams.find((t) => t !== "Ice Pack")
+                      : g.Teams.join(" vs. ")}
                   </td>
-                  {!onlyIcePackGames && <td>{g.Away}</td>}
                 </tr>
               ))}
             </tbody>
