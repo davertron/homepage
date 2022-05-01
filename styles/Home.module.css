@@ -29,3 +29,13 @@
 .gamesTable td {
     border-top: 1px solid #ccc;
 }
+
+.nextGameBadge {
+    background-color: black;
+    color: white;
+    position: absolute;
+    left: -3rem;
+    top: 0.6rem;
+    padding: 0px 8px;
+    font-weight: bold;
+}

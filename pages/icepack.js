@@ -52,6 +52,54 @@ export async function getServerSideProps({ req, res }) {
   return { props: { games } };
 }
 
+const DATE_MAP = {
+  Jan: "January",
+  Feb: "February",
+  Mar: "March",
+  Apr: "April",
+  May: "May",
+  Jun: "June",
+  Jul: "July",
+  Aug: "August",
+  Sep: "September",
+  Oct: "October",
+  Nov: "November",
+  Dec: "December",
+};
+
+let monthMatcher = new RegExp("(" + Object.keys(DATE_MAP).join("|") + ")");
+
+function getNextGameIndex(games) {
+  const today = new Date();
+
+  const gameDates = games.map((g) => {
+    // NOTE: This won't account for rollover from year to year since we're
+    // appending today's year on to the end of all the dates...might need to use
+    // a real date library
+    let parseableDate = g.Date.replace(/\(.*\)/g, "").replace(
+      / \d\d?:\d\d [ap]m/,
+      ""
+    );
+    let matches = parseableDate.match(monthMatcher);
+    if (matches && matches[1]) {
+      parseableDate =
+        parseableDate.replace(matches[1], DATE_MAP[matches[1]]) +
+        " " +
+        today.getUTCFullYear();
+    }
+
+    console.log(parseableDate);
+
+    return new Date(parseableDate.trim());
+  });
+
+  const nextGameIndex = gameDates.indexOf(gameDates.find((d) => d > today));
+
+  return nextGameIndex;
+}
+
+// TODO: Show scores
+// TODO: Show standings (calculate them?)
 export default function IcePack({ games }) {
   const [onlyIcePackGames, setOnlyIcePackGames] = useState(true);
 
@@ -60,6 +108,9 @@ export default function IcePack({ games }) {
   if (onlyIcePackGames) {
     games = icePackGames;
   }
+
+  const nextGameIndex = getNextGameIndex(games);
+
   return (
     <>
       <Head>
@@ -93,17 +144,32 @@ export default function IcePack({ games }) {
               </tr>
             </thead>
             <tbody>
-              {games.map((g) => (
-                <tr key={`${g.Date}-${g.Time}`}>
-                  <td>{g.Date.replace(/\)/, ") - ")}</td>
-                  <td>{g.Rink}</td>
-                  <td>
-                    {onlyIcePackGames
-                      ? g.Teams.find((t) => t !== "Ice Pack")
-                      : g.Teams.join(" vs. ")}
-                  </td>
-                </tr>
-              ))}
+              {games.map((g, i) => {
+                const isNextGame = i === nextGameIndex;
+                return (
+                  <tr
+                    key={`${g.Date}-${g.Time}`}
+                    style={{
+                      backgroundColor: isNextGame ? "#feffbf" : "inherit",
+                      position: "relative",
+                      color: i < nextGameIndex ? "#bcbcbc" : "inherit",
+                    }}
+                  >
+                    <td>
+                      {g.Date.replace(/\)/, ") - ")}
+                      {isNextGame && (
+                        <div className={styles.nextGameBadge}>Next</div>
+                      )}
+                    </td>
+                    <td>{g.Rink}</td>
+                    <td>
+                      {onlyIcePackGames
+                        ? g.Teams.find((t) => t !== "Ice Pack")
+                        : g.Teams.join(" vs. ")}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
