@@ -34,8 +34,20 @@
     background-color: black;
     color: white;
     position: absolute;
-    left: -2.75rem;
+    left: -3.3rem;
     top: 0.6rem;
     padding: 0px 8px;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.arrowStyles {
+    width: 0;
+    height: 0;
+    border-left: 12px solid black;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    position: absolute;
+    right: -0.78rem;
 }

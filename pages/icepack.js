@@ -97,6 +97,7 @@ function getNextGameIndex(games) {
 }
 
 // TODO: Show scores
+// TODO: Put 'icepackOnly' bool into the url
 // TODO: Show standings (calculate them?)
 // TODO: Don't grey out before index, beacuse this greys out other team's
 // games...you should grey out based on whether the game has a score or not (or
@@ -159,7 +160,9 @@ export default function IcePack({ games }) {
                     <td>
                       {g.Date.replace(/\)/, ") - ")}
                       {isNextGame && (
-                        <div className={styles.nextGameBadge}>Next</div>
+                        <div className={styles.nextGameBadge}>
+                          Next<div className={styles.arrowStyles}></div>
+                        </div>
                       )}
                     </td>
                     <td>{g.Rink}</td>
