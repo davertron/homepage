@@ -110,13 +110,13 @@ export default function IcePack({ games }) {
     badgeRef.current.classList.add(styles.showNextGameBadge);
   }, []);
 
-  const icePackGames = games.filter((g) => g.Teams.includes("Ice Pack"));
-
   if (onlyIcePackGames) {
-    games = icePackGames;
+    games = games.filter((g) => g.Teams.includes("Ice Pack"));
   }
 
   const nextGameIndex = getNextGameIndex(games);
+
+  console.log(nextGameIndex);
 
   return (
     <>
