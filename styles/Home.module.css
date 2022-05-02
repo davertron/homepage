@@ -40,6 +40,9 @@
     font-weight: bold;
     display: flex;
     justify-content: center;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: all 0.5s ease-out;
 }
 
 .arrowStyles {
@@ -50,4 +53,9 @@
     border-bottom: 12px solid transparent;
     position: absolute;
     right: -0.78rem;
+}
+
+.showNextGameBadge {
+    opacity: 100;
+    transform: translateY(0);
 }

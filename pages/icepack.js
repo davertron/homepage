@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import GoogleAnalytics from "../components/GoogleAnalytics";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import axios from "axios";
 import { load } from "cheerio";
@@ -104,6 +104,12 @@ function getNextGameIndex(games) {
 // more complicated but grey out on whether its in the past?)
 export default function IcePack({ games }) {
   const [onlyIcePackGames, setOnlyIcePackGames] = useState(true);
+  const badgeRef = useRef(null);
+
+  useEffect(() => {
+    badgeRef.current.classList.add(styles.showNextGameBadge);
+    console.log("blerf");
+  }, []);
 
   const icePackGames = games.filter((g) => g.Teams.includes("Ice Pack"));
 
@@ -160,7 +166,7 @@ export default function IcePack({ games }) {
                     <td>
                       {g.Date.replace(/\)/, ") - ")}
                       {isNextGame && (
-                        <div className={styles.nextGameBadge}>
+                        <div className={styles.nextGameBadge} ref={badgeRef}>
                           Next<div className={styles.arrowStyles}></div>
                         </div>
                       )}
