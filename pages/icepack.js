@@ -117,8 +117,6 @@ export default function IcePack({ games }) {
 
   const nextGameIndex = getNextGameIndex(games);
 
-  console.log(nextGameIndex);
-
   return (
     <>
       <Head>
