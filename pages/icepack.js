@@ -91,7 +91,7 @@ function getNextGameIndex(games) {
     return new Date(parseableDate.trim());
   });
 
-  const nextGameIndex = gameDates.indexOf(gameDates.find((d) => d > today));
+  const nextGameIndex = gameDates.indexOf(gameDates.find((d) => d >= today));
 
   return nextGameIndex;
 }
