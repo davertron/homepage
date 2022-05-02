@@ -71,6 +71,7 @@ let monthMatcher = new RegExp("(" + Object.keys(DATE_MAP).join("|") + ")");
 
 function getNextGameIndex(games) {
   const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset the time to midnight to avoid skipping to the next game prematurely
 
   const gameDates = games.map((g) => {
     // NOTE: This won't account for rollover from year to year since we're
