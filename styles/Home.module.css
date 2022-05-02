@@ -52,7 +52,7 @@
     border-top: 12px solid transparent;
     border-bottom: 12px solid transparent;
     position: absolute;
-    right: -0.78rem;
+    right: -12px;
 }
 
 .showNextGameBadge {
