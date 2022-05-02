@@ -114,7 +114,7 @@ export default function IcePack({ games }) {
   }, []);
 
   if (onlyIcePackGames) {
-    games = games.filter((g) => g.Teams.includes("Ice Pack"));
+    games = games.filter((g) => g.Teams.find((t) => /Ice Pack/.test(t)));
   }
 
   const nextGameIndex = getNextGameIndex(games);
@@ -160,7 +160,7 @@ export default function IcePack({ games }) {
                     style={{
                       backgroundColor: isNextGame ? "#feffbf" : "inherit",
                       position: "relative",
-                      color: i < nextGameIndex ? "#bcbcbc" : "inherit",
+                      color: /\d/.test(g.Teams) ? "#bcbcbc" : "inherit",
                     }}
                   >
                     <td>
