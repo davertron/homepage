@@ -108,7 +108,6 @@ export default function IcePack({ games }) {
 
   useEffect(() => {
     badgeRef.current.classList.add(styles.showNextGameBadge);
-    console.log("blerf");
   }, []);
 
   const icePackGames = games.filter((g) => g.Teams.includes("Ice Pack"));
@@ -148,7 +147,7 @@ export default function IcePack({ games }) {
               <tr>
                 <th>Date</th>
                 <th>Rink</th>
-                <th>{onlyIcePackGames ? "Opponent" : "Home"}</th>
+                <th>{onlyIcePackGames ? "Opponent" : "Teams"}</th>
               </tr>
             </thead>
             <tbody>
