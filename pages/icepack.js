@@ -3,49 +3,16 @@ import styles from "../styles/Home.module.css";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 import { useEffect, useRef, useState } from "react";
 
-import axios from "axios";
-import { load } from "cheerio";
+import { getGames } from "../lib/getGames";
 
 export async function getServerSideProps({ req, res }) {
   // Set caching headers to cache this for 8 hours...the values on the Full
   // stride site should not be changing very frequently...
   const eightHoursInSeconds = 8 * 60 * 60;
   res.setHeader("Cache-Control", `public, s-maxage=${eightHoursInSeconds}`);
-  const games = [];
+  let games;
   try {
-    const response = await axios
-      .get(
-        "http://fullstridestaging.com/schedule_nf.php?league=1&programme_abbr=SRC",
-        {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36",
-          },
-        }
-      )
-      .then((r) => r.data);
-
-    const $ = load(response);
-
-    const $scheduleRows = $(
-      "body > font > table > tbody > tr:nth-child(4) > td > table > tbody > tr"
-    );
-
-    $scheduleRows.each((index, row) => {
-      if (index !== 0) {
-        const tds = $(row).find("td");
-        const game = {
-          Date: $(tds[0]).text(),
-          Rink: $(tds[1]).text(),
-          Teams: $(tds[3])
-            .text()
-            .replace(/\n/, "")
-            .split(/\n/)
-            .map((t) => t.trim()),
-        };
-        games.push(game);
-      }
-    });
+    games = await getGames();
   } catch (e) {
     console.error(e);
   }
