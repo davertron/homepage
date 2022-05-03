@@ -3,13 +3,15 @@ import { add, format, parse } from "date-fns";
 
 import { getGames } from "../../lib/getGames";
 
+const EST = "America/New_York";
+
 export default async function (req, res) {
   try {
     let games = await getGames();
     // We only care about ice pack games...
     games = games.filter((g) => /Ice Pack/.test(g.Teams));
 
-    const cal = ical({ name: "Ice Pack Games", timezone: "America/New_York" });
+    const cal = ical({ name: "Ice Pack Games", timezone: EST });
 
     games.forEach((g) => {
       const start = parse(g.Date.trim(), "MMM d (EEE)h:mm a", new Date());
@@ -25,6 +27,7 @@ export default async function (req, res) {
           end,
           summary: `Hockey - ${g.Rink}`,
           organizer: "Dave Davis <dabukun@gmail.com>",
+          timezone: EST,
         });
       } catch (e) {
         console.error(`Unable to add event: ${e}`);
