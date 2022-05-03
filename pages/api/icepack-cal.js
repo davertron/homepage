@@ -9,7 +9,7 @@ export default async function (req, res) {
     // We only care about ice pack games...
     games = games.filter((g) => /Ice Pack/.test(g.Teams));
 
-    const cal = ical({ name: "Ice Pack Games", timezone: "est" });
+    const cal = ical({ name: "Ice Pack Games", timezone: "America/New_York" });
 
     games.forEach((g) => {
       const start = parse(g.Date.trim(), "MMM d (EEE)h:mm a", new Date());
