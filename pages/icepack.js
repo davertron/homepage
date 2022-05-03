@@ -149,6 +149,14 @@ export default function IcePack({ games }) {
               })}
             </tbody>
           </table>
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=46pra5covvo98v9uq0pe5ehqb59bm0j9%40import.calendar.google.com&ctz=America%2FNew_York"
+            style={{ border: 0, marginTop: 24 }}
+            width="100%"
+            height="600"
+            frameBorder="0"
+            scrolling="no"
+          ></iframe>
         </div>
       </div>
     </>
