@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@touch4it/ical-timezones": "^1.8.1",
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",

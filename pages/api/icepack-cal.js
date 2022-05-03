@@ -1,5 +1,6 @@
 import ical from "ical-generator";
 import { add, format, parse } from "date-fns";
+import { getVtimezoneComponent } from "@touch4it/ical-timezones";
 
 import { getGames } from "../../lib/getGames";
 
@@ -11,7 +12,10 @@ export default async function (req, res) {
     // We only care about ice pack games...
     games = games.filter((g) => /Ice Pack/.test(g.Teams));
 
-    const cal = ical({ name: "Ice Pack Games", timezone: EST });
+    const cal = ical({ name: "Ice Pack Games" });
+    cal.timezone({
+      generator: getVtimezoneComponent,
+    });
 
     games.forEach((g) => {
       const start = parse(g.Date.trim(), "MMM d (EEE)h:mm a", new Date());
