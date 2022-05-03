@@ -12,7 +12,7 @@ export default async function (req, res) {
     // We only care about ice pack games...
     games = games.filter((g) => /Ice Pack/.test(g.Teams));
 
-    const cal = ical({ name: "Ice Pack Games" });
+    const cal = ical({ name: "Ice Pack Games Updated" });
     cal.timezone({
       generator: getVtimezoneComponent,
     });
