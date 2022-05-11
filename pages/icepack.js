@@ -127,7 +127,10 @@ export default function IcePack({ games }) {
                     style={{
                       backgroundColor: isNextGame ? "#feffbf" : "inherit",
                       position: "relative",
-                      color: /\d/.test(g.Teams) ? "#bcbcbc" : "inherit",
+                      color:
+                        /\d/.test(g.Teams) || /cancelled/i.test(g.Date)
+                          ? "#bcbcbc"
+                          : "inherit",
                     }}
                   >
                     <td>
