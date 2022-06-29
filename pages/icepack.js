@@ -77,7 +77,8 @@ export default function IcePack({ games }) {
   const badgeRef = useRef(null);
 
   useEffect(() => {
-    badgeRef.current.classList.add(styles.showNextGameBadge);
+    badgeRef.current &&
+      badgeRef.current.classList.add(styles.showNextGameBadge);
   }, []);
 
   if (onlyIcePackGames) {
