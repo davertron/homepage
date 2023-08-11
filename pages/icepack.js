@@ -103,7 +103,6 @@ export default function IcePack({ games }) {
 
       <div className={styles.scheduleContainer}>
         <h1>Ice Pack Games</h1>
-        <div style={{textAlign: "left"}}><a href="http://www.fullstride.com/senior-d" target="_blank">Fullstride</a></div>
         <div style={{ fontSize: 16, textAlign: "left" }}>
           <label style={{ marginRight: 8 }}>Only Ice Pack:</label>
           <input
@@ -112,6 +111,7 @@ export default function IcePack({ games }) {
             onChange={(e) => setOnlyIcePackGames((b) => !b)}
             style={{ transform: "translateY(0.12rem)", cursor: "pointer" }}
           />
+          <a href="http://www.fullstride.com/senior-d" target="_blank" style={{float: right}}>Fullstride</a>
           <table className="table">
             <thead>
               <tr>
