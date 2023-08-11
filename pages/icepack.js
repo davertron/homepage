@@ -103,6 +103,7 @@ export default function IcePack({ games }) {
 
       <div className={styles.scheduleContainer}>
         <h1>Ice Pack Games</h1>
+        <div><a href="http://www.fullstride.com/senior-d">Fullstride</a></div>
         <div style={{ fontSize: 16, textAlign: "left" }}>
           <label style={{ marginRight: 8 }}>Only Ice Pack:</label>
           <input
