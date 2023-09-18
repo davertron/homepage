@@ -112,7 +112,7 @@ export default function IcePack({ games }) {
             style={{ transform: "translateY(0.12rem)", cursor: "pointer" }}
           />
           <a href="http://www.fullstride.com/senior-d" target="_blank" style={{float: "right"}}>Fullstride</a>
-          <a href="http://lebeerleague.weebly.com/schedule.html" target="_blank" style={{float: "right"}}>Le Beer League</a>
+          <a href="http://lebeerleague.weebly.com/schedule.html" target="_blank" style={{clear: "right", float: "right"}}>Le Beer League</a>
           <table className="table">
             <thead>
               <tr>
