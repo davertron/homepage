@@ -111,7 +111,7 @@ export default function IcePack({ games }) {
             onChange={(e) => setOnlyIcePackGames((b) => !b)}
             style={{ transform: "translateY(0.12rem)", cursor: "pointer" }}
           />
-          <a href="http://www.fullstride.com/senior-d" target="_blank" style={{float: "right"}}>Fullstride</a>
+          <a href="https://www.fullstride.com/upper-novice-division-1" target="_blank" style={{float: "right"}}>Fullstride</a>
           <table className="table">
             <thead>
               <tr>
