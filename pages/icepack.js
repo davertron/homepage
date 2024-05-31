@@ -66,12 +66,29 @@ function getNextGameIndex(games) {
   return nextGameIndex;
 }
 
-// TODO: Show scores
+function isIcePackGame(game) {
+  return game.Teams.find((t) => /Ice Pack/.test(t));
+}
+
+function isIcePackWinOrLoss(game) {
+  if (!isIcePackGame(game) || game.Scores[0] === null || game.Scores[1] === null) {
+    return '';
+  }
+
+  if (game.Teams[0] === 'Ice Pack') {
+    return game.Scores[0] > game.Scores[1] ? '( W )' : '( L )';
+  } else {
+    return game.Scores[1] > game.Scores[0] ? '( W )' : '( L )';
+  }
+}
+
 // TODO: Put 'icepackOnly' bool into the url
 // TODO: Show standings (calculate them?)
 // TODO: Don't grey out before index, beacuse this greys out other team's
 // games...you should grey out based on whether the game has a score or not (or
-// more complicated but grey out on whether its in the past?)
+// more complicated but grey out on whether its in the past?). You might be able
+// to leverage some of the code you have above for getting the next game index
+// to do this since you're already parsing game dates there...
 export default function IcePack({ games }) {
   const [onlyIcePackGames, setOnlyIcePackGames] = useState(true);
   const badgeRef = useRef(null);
@@ -82,7 +99,7 @@ export default function IcePack({ games }) {
   }, []);
 
   if (onlyIcePackGames) {
-    games = games.filter((g) => g.Teams.find((t) => /Ice Pack/.test(t)));
+    games = games.filter(isIcePackGame);
   }
 
   const nextGameIndex = getNextGameIndex(games);
@@ -118,6 +135,7 @@ export default function IcePack({ games }) {
                 <th>Date</th>
                 <th>Rink</th>
                 <th>{onlyIcePackGames ? "Opponent" : "Teams"}</th>
+                <th>Score</th>
               </tr>
             </thead>
             <tbody>
@@ -130,7 +148,7 @@ export default function IcePack({ games }) {
                       backgroundColor: isNextGame ? "#feffbf" : "inherit",
                       position: "relative",
                       color:
-                        /\d/.test(g.Teams) || /cancelled/i.test(g.Date)
+                        g.Scores[0] !== null || /cancelled/i.test(g.Date)
                           ? "#bcbcbc"
                           : "inherit",
                     }}
@@ -148,6 +166,9 @@ export default function IcePack({ games }) {
                       {onlyIcePackGames
                         ? g.Teams.find((t) => t !== "Ice Pack")
                         : g.Teams.join(" vs. ")}
+                    </td>
+                    <td>
+                      {g.Scores[0]} - {g.Scores[1]} {isIcePackWinOrLoss(g)}
                     </td>
                   </tr>
                 );
