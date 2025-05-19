@@ -3,27 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; next build",
+    "dev": "next dev --turbopack",
+    "build": "next build",
     "start": "next start",
-    "test": "BABEL_ENV=test jest"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@touch4it/ical-timezones": "^1.8.1",
-    "axios": "^0.27.2",
-    "cheerio": "^1.0.0-rc.10",
-    "cors": "^2.8.5",
-    "date-fns": "^2.28.0",
-    "ical-generator": "^3.4.2",
-    "next": "10.2.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@types/luxon": "^3.6.2",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "luxon": "^3.6.1",
+    "next": "15.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.24.5",
-    "@types/react": "^17.0.8",
-    "babel-jest": "^29.7.0",
-    "jest": "^29.7.0",
-    "typescript": "^4.3.2"
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
